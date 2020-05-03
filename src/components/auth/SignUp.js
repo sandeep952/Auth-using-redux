@@ -33,6 +33,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className="row">
+      {console.log("rendering signup")}
         <form className="col-md-6 offset-md-3 my-5">
           <div className="form-group">
             <label> Name</label>
