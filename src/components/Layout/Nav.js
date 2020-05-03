@@ -1,8 +1,7 @@
 import React from "react";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
-import {NavLink} from 'react-router-dom'
-const Nav = () => {
+const Nav = ({isAuthenticated,user}) => {
   const activeStyle= {color:"white" , fontWeight:"bold"}
     return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -18,13 +17,9 @@ const Nav = () => {
 
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <NavLink className="nav-link"  exact to="/dashboard" activeStyle={activeStyle}>
-              Dashboard
-            </NavLink>
-          </li>
-          <SignedOutLinks activeStyle={activeStyle}/>
-          <SignedInLinks activeStyle={activeStyle}/>
+          
+          {isAuthenticated && (<SignedInLinks activeStyle={activeStyle}/>)}
+          {!isAuthenticated && (<SignedOutLinks activeStyle={activeStyle}/>)}
         </ul>
       </div>
     </nav>

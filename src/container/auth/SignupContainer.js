@@ -1,29 +1,36 @@
-import React from 'react'
-import Signup from '../../components/auth/SignUp'
-import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
+import React from "react";
+import Signup from "../../components/auth/SignUp";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import { Redirect } from "react-router-dom";
+const SignupContainer = (props) => {
+  
+  const didRedirect = ()=>{
+    if(props.isAuthenticated){
+      return <Redirect exact to="/dashboard" />
+    }
+  }
 
 
-const SignupContainer = (props) =>{
-    return (
-        <React.Fragment>
-          <Signup registerUser={props.registerUser}/>  
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      {didRedirect()}
+      <Signup {...props} />
+    </React.Fragment>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  }
 }
-
-
-
-
 const mapDispatchToProps = (dispatch) => {
   return {
-      registerUser:(userDetails)=>{
-        
-       dispatch(registerUser(userDetails))
+    registerUser: (userDetails) => {
+      dispatch(registerUser(userDetails));
+    },
+  };
+};
 
-      }
- 
-      }
-}
-
-export default connect(null,mapDispatchToProps)(SignupContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);
