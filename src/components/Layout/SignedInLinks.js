@@ -14,7 +14,7 @@ const SignedInLinks = ({ activeStyle, username }) => {
         </NavLink>
       </li>
 
-      <li class="nav-item dropdown">
+      <li className="nav-item dropdown">
         <div
           className="nav-link dropdown-toggle btn"
           role="button"
@@ -23,8 +23,8 @@ const SignedInLinks = ({ activeStyle, username }) => {
           {username}
         </div>
 
-        <div class="dropdown-menu">
-          <Link className="nav-link dropdown-item text-dark" to="/">
+        <div className="dropdown-menu">
+          <Link className="nav-link dropdown-item text-dark" to="/logout">
             Log Out
           </Link>
         </div>

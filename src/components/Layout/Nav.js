@@ -1,7 +1,7 @@
 import React from "react";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
-const Nav = ({isAuthenticated,user}) => {
+const Nav = ({isAuthenticated,user,logoutUser}) => {
   const activeStyle= {color:"white" , fontWeight:"bold"}
     return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
@@ -18,7 +18,7 @@ const Nav = ({isAuthenticated,user}) => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           
-          {isAuthenticated && (<SignedInLinks activeStyle={activeStyle} username={user.name}/>)}
+          {isAuthenticated && (<SignedInLinks activeStyle={activeStyle} username={user.name} logoutUser={logoutUser}/>)}
           {!isAuthenticated && (<SignedOutLinks activeStyle={activeStyle}/>)}
         </ul>
       </div>

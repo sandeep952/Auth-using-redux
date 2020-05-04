@@ -14,3 +14,8 @@ export const authenticate = (jwt)=>{
     }
 }
 
+export const logout = ()=>{
+    if(window){
+        localStorage.removeItem("jwt")
+    }
+}

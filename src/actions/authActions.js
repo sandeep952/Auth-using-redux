@@ -5,17 +5,18 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from "./actionTypes";
 import axios from "axios";
 import API from "../api";
 
-export const registerRequest = () => {
+ const registerRequest = () => {
   return {
     type: REGISTER_REQUEST,
   };
 };
 
-export const registerSuccess = (data) => {
+ const registerSuccess = (data) => {
   console.log("data", data);
   return {
     type: REGISTER_SUCESS,
@@ -23,7 +24,7 @@ export const registerSuccess = (data) => {
   };
 };
 
-const registerFail = (err) => {
+ const registerFail = (err) => {
   return {
     type: REGISTER_FAIL,
     payload: {
@@ -32,13 +33,13 @@ const registerFail = (err) => {
   };
 };
 
-export const loginRequest = () => {
+ const loginRequest = () => {
   return {
     type: LOGIN_REQUEST,
   };
 };
 
-export const loginSuccess = (data) => {
+ const loginSuccess = (data) => {
   console.log("data", data);
   return {
     type: LOGIN_SUCESS,
@@ -56,6 +57,12 @@ const loginFail = (err) => {
   };
 };
 
+
+export const logout = ()=>{
+  return {
+    type:LOGOUT
+  }
+}
 //thunk to register new user
 export const registerUser = (userDetails) => {
   return (dispatch) => {
@@ -67,7 +74,7 @@ export const registerUser = (userDetails) => {
       })
       .catch((err) => {
         console.log("err", err.response);
-        dispatch(loginFail(err.response.data.error));
+        dispatch(registerFail(err.response.data.error));
       });
   };
 };
@@ -84,8 +91,12 @@ export const loginUser = (userDetails) => {
         dispatch(loginSuccess(response.data));
       })
       .catch((err) => {
-  
-        dispatch(loginFail(err.response.data.error));
+        if(err.response){
+          dispatch(loginFail(err.response.data.error));
+        }
+        else{
+          dispatch(loginFail(err.message))
+        }
       });
   };
 };

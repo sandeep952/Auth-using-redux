@@ -1,5 +1,5 @@
 import * as actions from "../../actions/actionTypes";
-import { checkAuth, authenticate } from "../../helper/utils";
+import { checkAuth, authenticate, logout } from "../../helper/utils";
 
 const initialState = {
   isAuthenticated: checkAuth() ? true : false,
@@ -22,28 +22,27 @@ const authReducer = (state = initialState, action) => {
       };
     case actions.LOGIN_SUCESS:
     case actions.REGISTER_SUCESS:
-      let token = action.payload.token;
-      let user = action.payload.user;
-
       authenticate(action.payload);
       return {
         ...state,
         isLoading: false,
+        user:action.payload.user,
+        token:action.payload.token,        
         isAuthenticated: true,
-        token: token,
-        user: user,
         error: "",
       };
 
     case actions.LOGOUT:
     case actions.LOGIN_FAIL:
     case actions.REGISTER_FAIL:
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      logout();
       return {
         ...state,
         isLoading: false,
-        error: action.payload.error,
+        user:null,
+        token:null,
+        isAuthenticated:false,
+        error: action.payload ? action.payload.error : "",
       };
 
     default:
