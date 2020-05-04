@@ -36,12 +36,11 @@ export const registerUser = (userDetails) => {
     dispatch(registerRequest());
     return axios.post(`${API}/signup`, userDetails)
       .then((response) => {
-        
         dispatch(registerSuccess(response.data));
       })
       .catch((err) => {
-        console.log(err)
-        dispatch(registerFail(err.message));
+        console.log("err",err.response)
+        dispatch(registerFail(err.response.data.error));
       });
   }
 }

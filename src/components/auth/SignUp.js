@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 class SignUp extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       email: "",
@@ -33,7 +33,6 @@ class SignUp extends Component {
   render() {
     return (
       <div className="row">
-      {console.log("rendering signup")}
         <form className="col-md-6 offset-md-3 my-5">
           <div className="form-group">
             <label> Name</label>

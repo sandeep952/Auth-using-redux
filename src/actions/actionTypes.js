@@ -7,5 +7,5 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST"
 export const LOGIN_SUCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAIL = "LOGIN_FAIL"
 
-export const LOGIN_OUT = "LOG_OUT"
+export const LOGOUT = "LOGOUT"
 

@@ -13,7 +13,6 @@ const SignupContainer = (props) => {
 
   return (
     <React.Fragment>
-    {console.log("container render")}
       {didRedirect()}
       <Signup {...props} />
     </React.Fragment>

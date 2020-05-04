@@ -25,6 +25,7 @@ class SignIn extends Component {
   render() {
     return (
       <div className="row">
+      {console.log("signin render")}
         <form className="col-md-6 offset-md-3 my-5">
           <div className="form-group">
             <label> Email</label>
@@ -55,7 +56,7 @@ class SignIn extends Component {
               onClick={this.onSubmit.bind(this)}
               className="btn btn-outline-primary"
             >
-              Login{" "}
+              Login
             </button>
           </div>
         </form>

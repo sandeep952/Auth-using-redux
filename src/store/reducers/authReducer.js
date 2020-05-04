@@ -2,18 +2,17 @@ import * as actions from "../../actions/actionTypes";
 import { checkAuth, authenticate } from "../../helper/utils";
 
 const initialState = {
-  isAuthenticated: checkAuth(),
+  isAuthenticated: checkAuth() ? true : false,
   isLoading: false,
-  token: checkAuth().token,
+  token: checkAuth() ? checkAuth.token : null,
   error: "",
-  user: checkAuth().user,
+  user: checkAuth() ? checkAuth().user : null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOGIN_REQUEST:
     case actions.REGISTER_REQUEST:
-      console.log("req received");
       return {
         ...state,
         isLoading: true,
@@ -36,7 +35,7 @@ const authReducer = (state = initialState, action) => {
         error: "",
       };
 
-    case actions.LOGIN_OUT:
+    case actions.LOGOUT:
     case actions.LOGIN_FAIL:
     case actions.REGISTER_FAIL:
       localStorage.removeItem("token");
