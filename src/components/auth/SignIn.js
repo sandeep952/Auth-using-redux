@@ -6,8 +6,9 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
-    };
+    }
   }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -16,16 +17,17 @@ class SignIn extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+    const {email,password}=this.state;
+    this.props.loginUser({email,password})
     this.setState({
-      name: "",
       email: "",
       password: "",
     });
   }
+
   render() {
     return (
       <div className="row">
-      {console.log("signin render")}
         <form className="col-md-6 offset-md-3 my-5">
           <div className="form-group">
             <label> Email</label>
@@ -61,7 +63,7 @@ class SignIn extends Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 

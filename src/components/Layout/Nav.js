@@ -18,7 +18,7 @@ const Nav = ({isAuthenticated,user}) => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           
-          {isAuthenticated && (<SignedInLinks activeStyle={activeStyle}/>)}
+          {isAuthenticated && (<SignedInLinks activeStyle={activeStyle} username={user.name}/>)}
           {!isAuthenticated && (<SignedOutLinks activeStyle={activeStyle}/>)}
         </ul>
       </div>
