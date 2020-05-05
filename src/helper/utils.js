@@ -1,3 +1,4 @@
+
 export const checkAuth = ()=>{
     if(window && localStorage.getItem('jwt')  ){
         return JSON.parse(localStorage.getItem('jwt'))
@@ -19,3 +20,4 @@ export const logout = ()=>{
         localStorage.removeItem("jwt")
     }
 }
+

@@ -6,6 +6,7 @@ import SignupContainer from './container/auth/SignupContainer';
 import NavContainer from './container/NavContainer';
 import SignInContainer from './container/auth/SignInContainer';
 import LogOut from './container/auth/LogOut';
+import PrivateRoute from './helper/PrivateRoute';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <BrowserRouter>
     <NavContainer/>
       <Switch>
-      <Route exact path="/dashboard" component={Dashboard}/>
+      <PrivateRoute exact path="/dashboard"> <Dashboard/> </PrivateRoute> 
       <Route exact path="/" component={SignupContainer}/>
       <Route exact path="/signin" component={SignInContainer}/> 
       <Route exact path="/logout" component={LogOut}/>     
